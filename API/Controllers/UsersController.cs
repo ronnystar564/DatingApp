@@ -53,7 +53,7 @@ namespace API.Controllers
             }
 
             // Return the newly created user with a 201 Created status
-            return CreatedAtAction(nameof(GetUser), new { id = user.ID}, user);
+            return CreatedAtAction(nameof(GetUser), new { id = user.id}, user);
         }
     }
 }
