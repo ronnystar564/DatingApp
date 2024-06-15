@@ -1,7 +1,7 @@
 <h1>Hello Ronald</h1>
 
 <ul>
-  <li>
+  <li *ngFor ="let users of users">
     {{users.id}} - {{users.userName}}
   </li>
 </ul>
