@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [FormsModule, CommonModule, BrowserAnimationsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
   
