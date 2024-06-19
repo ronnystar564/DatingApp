@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from './nav/nav.component'
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 
@@ -15,6 +16,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    BsDropdownModule.forRoot(),
   
   ],
   providers: [provideHttpClient(withFetch())],

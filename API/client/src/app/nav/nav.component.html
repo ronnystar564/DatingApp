@@ -15,12 +15,12 @@
         <a class="nav-link" aria-disabled="true">Logout</a>
       </li>
     </ul>
-    <div class="dropdown" *ngIf="logedIn">
-      <a class="dropdown-toggle text-light">Welcome Users</a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item">Edit Profile</a>
-        <a class="dropdown-item" (click)="logout()">Logout</a>
-      </div>
+    <div class="dropdown" *ngIf="logedIn" dropdown>
+      <a dropdownToggle class="dropdown-toggle text-light text-decoration-none" role="button">Welcome Users</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+        <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+      </ul>
     </div>
     <form *ngIf="!logedIn" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
       <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="Username">
