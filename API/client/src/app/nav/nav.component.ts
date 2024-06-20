@@ -5,6 +5,8 @@ import { response } from 'express';
 import { error } from 'console';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Observable, of } from 'rxjs';
+import { User } from '../_model/user';
 
 
 @Component({
@@ -18,23 +20,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export class NavComponent {
 
   model: any = {}
-  logedIn = false;
+  
 
-  constructor(private accountServices: AccountService) {
+  constructor(public accountServices: AccountService) { }
 
+  ngOnit(): void {
+   
   }
+
+
   login() {
     this.accountServices.login(this.model).subscribe({
       next: response => {
         console.log(response);
-        this.logedIn = true;
       },
       error: error => console.log(error)
     })
   }
 
   logout() {
-    this.logedIn = false;
+    this.accountServices.logout();
+    
   }
 
 }
