@@ -6,6 +6,7 @@ import { NavComponent } from './nav/nav.component';
 import { AccountService } from './Services/account.service';
 import { User } from './_model/user';
 import { response } from 'express';
+import { HomeComponent } from './home/home.component'
  
 
 @Component({
@@ -13,7 +14,7 @@ import { response } from 'express';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [RouterOutlet, CommonModule, NavComponent]
+  imports: [RouterOutlet, CommonModule, NavComponent, HomeComponent]
 
 
 })
