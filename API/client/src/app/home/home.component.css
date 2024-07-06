@@ -1,8 +1,35 @@
-.container {
-  height: 100vh;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Ensure no scrollbars appear */
+}
+
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-image: url('../assets/images/my-images.jpg');
+  height: 100%;
+  background-image: url('../assets/images/istockphoto-1077733334-1024x1024.jpg');
   background-size: cover;
   background-position: center;
-  margin-bottom: 0px;
+  z-index: -1; /* Ensure it stays behind the content */
+}
+
+.container {
+  position: relative;
+  z-index: 1; /* Ensure it stays above the background */
+  width: 100%;
+  padding-top: 5rem; /* Adjust as necessary */
+}
+
+form {
+  background: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.text-center {
+  text-align: center;
 }
