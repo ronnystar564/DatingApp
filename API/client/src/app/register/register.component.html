@@ -1,23 +1,53 @@
-<form #registerFrom="ngForm" (ngSubmit)="register()" autocomplete="off">
-  <h2 class="text-center text-primary">sign up</h2>
+<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+  <h2 class="text-center text-primary">Sign Up</h2>
   <hr>
-  <div class="mb-3">
 
-    <input type="text" class="form-control" name="email" [(ngModel)]="model.email" placeholder="Email" />
-  </div>
   <div class="mb-3">
+    <input type="email"
+           class="form-control"
+           name="email"
+           [(ngModel)]="model.email"
+           placeholder="Email"
+           required />
+  </div>
 
-    <input type="text" class="form-control" name="username" [(ngModel)]="model.username" placeholder="Username" />
+  <div class="mb-3">
+    <input type="text"
+           class="form-control"
+           name="username"
+           [(ngModel)]="model.username"
+           placeholder="Username"
+           required />
   </div>
-  <div>
-    <input type="password" class="form-control" name="password" [(ngModel)]="model.password" placeholder="Password" />
+
+ 
+
+  <div class="mb-3 position-relative">
+    <input [type]="passwordFieldType"
+           class="form-control"
+           name="password"
+           [(ngModel)]="model.password"
+           placeholder="Password"
+           required />
+    <!--<span class="toggle-password"
+          (click)="togglePasswordVisibility()"
+          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+      {{ passwordFieldType === 'password' ? 'Show' : 'Hide' }}
+    </span>-->
   </div>
-  <div>
-    <input type="text" class="form-control" name="confirmpassword" [(ngModel)]="model.confirmpassword" placeholder="Re-enter Password" />
+
+  <div class="mb-3">
+    <input type="password"
+           class="form-control"
+           name="confirmpassword"
+           [(ngModel)]="model.confirmpassword"
+           placeholder="Re-enter Password"
+           required />
   </div>
+
   <br />
   <div class="text-center">
     <button class="btn btn-success me-2" type="submit">Register</button>
-    <button class="btn btn-default me-2" type="button" (click)="cancel()">Cancel</button>
+    <button class="btn btn-secondary me-2" type="button" (click)="cancel()">Cancel</button>
   </div>
 </form>

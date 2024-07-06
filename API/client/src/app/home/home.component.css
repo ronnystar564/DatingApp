@@ -1,0 +1,8 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  background-image: url('../assets/images/my-images.jpg');
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 0px;
+}

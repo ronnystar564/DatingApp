@@ -1,5 +1,4 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from './nav/nav.component';
@@ -20,12 +19,11 @@ import { HomeComponent } from './home/home.component'
 })
 export class AppComponent implements OnInit {
   title = 'client';
-  users: any; // Initialize as an empty array
 
-  constructor(private http: HttpClient, private accountService: AccountService) { }
+
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.getUsers();
     this.setCurrentUser();
   }
 
@@ -38,14 +36,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  getUsers() {
-    this.http.get('https://localhost:5001/api/users').subscribe({
-      next: response => this.users = response,
-      error: error => console.log(error),
-      complete: () => console.log('')
-
-    });
-  }
+ 
   setCurrentUser() {
     if (this.isLocalStorageAvailable()) {
       const userString = localStorage.getItem('user');
