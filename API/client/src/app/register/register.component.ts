@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../Services/account.service';
-import { response } from 'express';
-import { error } from 'console';
+
 
 
 @Component({
@@ -36,6 +35,17 @@ export class RegisterComponent {
   }
   cancel() {
     this.registerMode.emit(false);
+  }
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+  }
+
+  validatePassword(password: string): boolean {
+    const passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$&*]).{8,}$/;
+    return passwordPattern.test(password);
+  }
+  passwordsMatch(password: string, confirmPassword: string): boolean {
+    return password === confirmPassword;
   }
  
 

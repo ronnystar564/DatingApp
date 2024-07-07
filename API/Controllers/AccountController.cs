@@ -33,7 +33,8 @@ namespace API.Controllers
             {
                 UserName = userDTO.Username.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userDTO.Password)),
-                PassworSalt = hmac.Key
+                PassworSalt = hmac.Key,
+                Email = userDTO.Email
 
             };
 
@@ -42,6 +43,7 @@ namespace API.Controllers
             return new UserDto
             {
                 Username = user.UserName,
+                
                 Token = _tokenService.CreateToken(user)
             };
         }

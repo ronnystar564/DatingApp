@@ -20,20 +20,23 @@
            required />
   </div>
 
- 
-
   <div class="mb-3 position-relative">
     <input [type]="passwordFieldType"
            class="form-control"
            name="password"
            [(ngModel)]="model.password"
            placeholder="Password"
-           required />
-    <!--<span class="toggle-password"
+           required
+           #password="ngModel"
+           [ngClass]="{'is-invalid': !validatePassword(model.password) && password.touched}" />
+    <span class="toggle-password"
           (click)="togglePasswordVisibility()"
           style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
       {{ passwordFieldType === 'password' ? 'Show' : 'Hide' }}
-    </span>-->
+    </span>
+    <div *ngIf="!validatePassword(model.password) && password.touched" class="invalid-feedback">
+      Password must be at least 8 characters long, contain at least one uppercase letter and one special character.
+    </div>
   </div>
 
   <div class="mb-3">
@@ -42,12 +45,17 @@
            name="confirmpassword"
            [(ngModel)]="model.confirmpassword"
            placeholder="Re-enter Password"
-           required />
+           required
+           #confirmpassword="ngModel"
+           [ngClass]="{'is-invalid': !passwordsMatch(model.password, model.confirmpassword) && confirmpassword.touched}" />
+    <div *ngIf="!passwordsMatch(model.password, model.confirmpassword) && confirmpassword.touched" class="invalid-feedback">
+      Passwords do not match.
+    </div>
   </div>
 
   <br />
   <div class="text-center">
-    <button class="btn btn-success me-2" type="submit">Register</button>
+    <button class="btn btn-success me-2" type="submit" [disabled]="!registerForm.valid || !validatePassword(model.password) || !passwordsMatch(model.password, model.confirmpassword)">Register</button>
     <button class="btn btn-secondary me-2" type="button" (click)="cancel()">Cancel</button>
   </div>
 </form>

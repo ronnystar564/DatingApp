@@ -1,6 +1,6 @@
 <div class="background-container"></div>
 <div class="container mt-5">
-  <div *ngIf="!registerMode" class="content" style="text-align: center;">
+  <div *ngIf="!registerMode && !(accountService.currentUser$ | async)" class="content" style="text-align: center;">
     <h1>Find Your Match</h1>
     <p class="lead" style="font-weight:bold">Come on in to view your matches.... all you need to do is sign up!</p>
     <div class="text-center">
@@ -12,7 +12,7 @@
   <div *ngIf="registerMode">
     <div class="row justify-content-center">
       <div class="col-4">
-        <app-register *ngIf="registerMode" (registerMode)="CancelregisterMode($event)"></app-register>
+        <app-register (registerMode)="CancelregisterMode($event)"></app-register>
       </div>
     </div>
   </div>
