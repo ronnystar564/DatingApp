@@ -44,6 +44,11 @@ export class RegisterComponent {
     const passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$&*]).{8,}$/;
     return passwordPattern.test(password);
   }
+  validateEmail(email: string): boolean {
+    // Basic email pattern validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  }
   passwordsMatch(password: string, confirmPassword: string): boolean {
     return password === confirmPassword;
   }

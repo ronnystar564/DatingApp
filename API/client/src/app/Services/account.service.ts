@@ -50,6 +50,9 @@ export class AccountService {
       })
     )
   }
+  checkUsernameExists(username: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/checkusername/${username}`);
+  }
 
   setCurrentUser(user: User) {
     if (this.isLocalStorageAvailable()) {

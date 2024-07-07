@@ -8,7 +8,12 @@
            name="email"
            [(ngModel)]="model.email"
            placeholder="Email"
-           required />
+           required
+           #email="ngModel"
+           [ngClass]="{'is-invalid': !validateEmail(model.email) && email.touched}" />
+    <div *ngIf="!validateEmail(model.email) && email.touched" class="invalid-feedback">
+      Invalid email format. Please enter a valid email address.
+    </div>
   </div>
 
   <div class="mb-3">
@@ -17,7 +22,6 @@
            name="username"
            [(ngModel)]="model.username"
            placeholder="Username"
-           required />
   </div>
 
   <div class="mb-3 position-relative">
