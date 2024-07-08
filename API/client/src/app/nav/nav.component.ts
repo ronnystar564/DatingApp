@@ -20,6 +20,7 @@ import { User } from '../_model/user';
 export class NavComponent {
 
   model: any = {}
+  errorMessage: string = '';
   
 
   constructor(public accountServices: AccountService) { }
@@ -34,7 +35,11 @@ export class NavComponent {
       next: response => {
         console.log(response);
       },
-      error: error => console.log(error)
+      error: error => {
+        console.log(error);
+        
+        this.errorMessage = error.error.message || 'An unexpected error occurred. Please try again later.';
+      }
     })
   }
 

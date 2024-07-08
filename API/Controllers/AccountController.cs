@@ -29,6 +29,9 @@ namespace API.Controllers
             if (await UserExists(userDTO.Username))
                 return BadRequest(new { message = "User already exists" });
 
+            if (await EmailExists(userDTO.Email))
+                return BadRequest(new { message = "Email already exists" });
+
             using var hmac = new HMACSHA512();
 
             var user = new AppUsers
@@ -55,13 +58,14 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
-            if (user == null) return Unauthorized("invalid username or Password");
+            if (user == null) return Unauthorized(new { message = "Invalid username or password" });
 
             using var hmac = new HMACSHA512(user.PassworSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
              for(int i =0; i< computedHash.Length; i++)
             {
-                if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("invalid password or UserName");
+                if (computedHash[i] != user.PasswordHash[i])
+                    return Unauthorized(new { message = "Invalid username or password" });
             }
             try
             {
@@ -84,6 +88,10 @@ namespace API.Controllers
         private async Task<bool> UserExists(string username)
         {
             return await _context.Users.AnyAsync(x => x.UserName == username.ToLower());
+        }
+        private async Task<bool> EmailExists(string email)
+        {
+            return await _context.Users.AnyAsync(x => x.Email == email.ToLower());
         }
     }
 }

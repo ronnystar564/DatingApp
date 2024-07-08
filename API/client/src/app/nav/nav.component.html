@@ -22,10 +22,14 @@
         <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
       </ul>
     </div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-2">
+      {{ errorMessage }}
+    </div>
     <form *ngIf="!(accountServices.currentUser$ | async)" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
-      <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="Username">
-      <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password" placeholder="Password">
+      <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="Username" required>
+      <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password" placeholder="Password" required>
       <button class="btn btn-outline-success" type="submit">Login</button>
     </form>
+
   </div>
 </nav>
