@@ -26,7 +26,9 @@ namespace API.Controllers
 
         public async Task<ActionResult<UserDto>> Register(RegisterDTO userDTO)
         {
-            if (await UserExists(userDTO.Username)) return BadRequest("user alredy exist");
+            if (await UserExists(userDTO.Username))
+                return BadRequest(new { message = "User already exists" });
+
             using var hmac = new HMACSHA512();
 
             var user = new AppUsers
