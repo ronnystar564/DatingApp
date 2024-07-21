@@ -17,7 +17,7 @@ import { ListsComponent } from './lists/lists.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [RouterOutlet, CommonModule, NavComponent, HomeComponent, MessagesComponent, MemberDetailsComponent, MemberListComponent,ListsComponent]
+  imports: [RouterOutlet, CommonModule, NavComponent, HomeComponent]
 
 
 })
