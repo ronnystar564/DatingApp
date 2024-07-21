@@ -6,6 +6,10 @@ import { AccountService } from './Services/account.service';
 import { User } from './_model/user';
 import { response } from 'express';
 import { HomeComponent } from './home/home.component'
+import { MessagesComponent } from './messages/messages.component';
+import { MemberDetailsComponent } from './members/member-details/member-details.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { ListsComponent } from './lists/lists.component';
  
 
 @Component({
@@ -13,7 +17,7 @@ import { HomeComponent } from './home/home.component'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [RouterOutlet, CommonModule, NavComponent, HomeComponent]
+  imports: [RouterOutlet, CommonModule, NavComponent, HomeComponent, MessagesComponent, MemberDetailsComponent, MemberListComponent,ListsComponent]
 
 
 })
