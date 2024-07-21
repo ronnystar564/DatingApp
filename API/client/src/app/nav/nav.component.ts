@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, of } from 'rxjs';
 import { User } from '../_model/user';
-import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class NavComponent {
   errorMessage: string = '';
   
 
-  constructor(public accountServices: AccountService) { }
+  constructor(public accountServices: AccountService, private router: Router) { }
 
   ngOnit(): void {
    
@@ -33,19 +33,20 @@ export class NavComponent {
 
   login() {
     this.accountServices.login(this.model).subscribe({
-      next: response => {
-        console.log(response);
-      },
+      next: _=> 
+        this.router.navigateByUrl('/members'),
+      
       error: error => {
         console.log(error);
         
-        this.errorMessage = error.error.message || 'An unexpected error occurred. Please try again later.';
+       
       }
     })
   }
 
   logout() {
     this.accountServices.logout();
+    this.router.navigateByUrl('/');
     
   }
 
