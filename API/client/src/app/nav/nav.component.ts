@@ -34,8 +34,11 @@ export class NavComponent {
 
   login() {
     this.accountServices.login(this.model).subscribe({
-      next: _=> 
-        this.router.navigateByUrl('/members'),
+      next: () => {
+        this.router.navigateByUrl('/members');
+        this.toastr.success('Login successful');
+      },
+        
       
       error: error => {
         const errorMsg = error.error?.message || error.message || 'An unknown error occurred';

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
 import { HttpClient } from '@angular/common/http';
 import { AccountService } from '../Services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit{
   users: any;
   event: boolean = false;
 
-  constructor(private http: HttpClient, public accountService: AccountService) { }
+  constructor(private http: HttpClient, public accountService: AccountService, private toastr: ToastrService) { }
 
 
   ngOnInit(): void {

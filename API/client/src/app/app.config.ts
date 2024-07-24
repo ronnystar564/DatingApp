@@ -10,5 +10,9 @@ import { toUSVString } from 'util';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideHttpClient(withFetch()), provideToastr()]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideHttpClient(withFetch()), provideToastr({
+    timeOut: 3000,
+    positionClass: 'toast-bottom-right',
+    preventDuplicates: true,
+  })]
 };

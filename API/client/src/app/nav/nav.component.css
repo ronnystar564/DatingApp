@@ -7,3 +7,35 @@
   margin: 0 auto;
   text-align: left;
 }
+/* Decrease padding of navbar */
+.navbar {
+  padding: 0.5rem 1rem; /* Adjust these values as needed */
+}
+
+/* Decrease margin of navbar items */
+.navbar-nav .nav-item {
+  margin: 0 0.5rem; /* Adjust the horizontal margin */
+}
+
+/* Adjust font size and spacing for nav links */
+.nav-link {
+  font-size: 0.875rem; /* Smaller font size */
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+}
+
+/* Adjust dropdown menu padding */
+.dropdown-menu {
+  padding: 0.5rem; /* Adjust padding inside dropdown menu */
+}
+
+/* Adjust form controls inside the navbar */
+.form-control {
+  font-size: 0.875rem; /* Smaller font size for input fields */
+  padding: 0.5rem; /* Adjust padding for input fields */
+}
+
+/* Adjust the size of buttons */
+.btn {
+  font-size: 0.875rem; /* Smaller font size for buttons */
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+}

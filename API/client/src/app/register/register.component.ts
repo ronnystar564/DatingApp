@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../Services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent {
   passwordFieldType: string = 'password';
   errorMessage: string = ''; // Add this line
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private toastr: ToastrService) { }
 
   register() {
     this.errorMessage = ''; // Reset the error message before making a request
@@ -26,8 +27,10 @@ export class RegisterComponent {
         this.cancel();
       },
       error: error => {
-        console.log(error);
-        this.errorMessage = error.error.message || 'An unexpected error occurred. Please try again later.'; // Update this line
+        const errorMsg = error.error?.message || error.message || 'An unknown error occurred';
+        this.toastr.error(errorMsg)
+
+
       }
     });
   }
