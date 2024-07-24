@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, of } from 'rxjs';
 import { User } from '../_model/user';
 import { Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class NavComponent {
   errorMessage: string = '';
   
 
-  constructor(public accountServices: AccountService, private router: Router) { }
+  constructor(public accountServices: AccountService, private router: Router, private toastr: ToastrService) { }
 
   ngOnit(): void {
    
@@ -37,7 +38,8 @@ export class NavComponent {
         this.router.navigateByUrl('/members'),
       
       error: error => {
-        console.log(error);
+        const errorMsg = error.error?.message || error.message || 'An unknown error occurred';
+        this.toastr.error(errorMsg)
         
        
       }
