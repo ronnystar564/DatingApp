@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from './nav/nav.component'
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -12,7 +12,7 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
 import { ListsComponent } from './lists/lists.component';
 import { AppRoutingModule } from './app-routing.module';
-
+import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -36,7 +36,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     BsDropdownModule.forRoot(),
     AppRoutingModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      // add other default configurations as needed
+    }),
   
   ],
   providers: [provideHttpClient(withFetch())],

@@ -10,6 +10,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
+import { ToastrModule } from 'ngx-toastr';
  
 
 @Component({
