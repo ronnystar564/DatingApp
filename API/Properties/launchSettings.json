@@ -36,6 +36,17 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Angular": { // New profile for Angular
+      "commandName": "Executable",
+      "executablePath": "cmd",
+      "commandLineArgs": "/c ng serve --open",
+      "workingDirectory": "$(ProjectDir)", // Ensure this points to your Angular project directory
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:4200",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }

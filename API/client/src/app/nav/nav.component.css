@@ -39,3 +39,31 @@
   font-size: 0.875rem; /* Smaller font size for buttons */
   padding: 0.5rem 1rem; /* Adjust padding as needed */
 }
+/* Make dropdown menu black */
+.dropdown-menu-dark {
+  background-color: #343a40; /* Dark color for dropdown */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Dropdown items styling */
+.dropdown-item {
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+  .dropdown-item:hover {
+    background-color: #495057; /* Slightly lighter dark color on hover */
+  }
+
+/* Dropdown toggle button */
+.dropdown-toggle {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+  .dropdown-toggle:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
