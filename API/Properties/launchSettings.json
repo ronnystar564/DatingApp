@@ -9,22 +9,22 @@
     }
   },
   "profiles": {
-    "http": {
+    "API (http)": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "http://localhost:5001/swagger",
       "applicationUrl": "http://localhost:5001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "https": {
+    "API (https)": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:5000;http://localhost:5001",
+      "launchUrl": "https://localhost:5000/swagger",
+      "applicationUrl": "https://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -32,16 +32,16 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Angular": { // New profile for Angular
+    "Angular (Client)": {
       "commandName": "Executable",
-      "executablePath": "cmd",
+      "executablePath": "cmd.exe",
       "commandLineArgs": "/c ng serve --open",
-      "workingDirectory": "$(ProjectDir)", // Ensure this points to your Angular project directory
+      "workingDirectory": "C:\\Users\\rstar\\OneDrive\\Documents\\GitHub\\DatingApp\\API\\client",
       "launchBrowser": true,
       "applicationUrl": "http://localhost:4200",
       "environmentVariables": {

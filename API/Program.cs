@@ -37,12 +37,9 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseDefaultFiles(); // Serves default files like "index.html"
+app.UseStaticFiles();  // Serves static files from wwwroot folder
+
 
 app.UseHttpsRedirection();
 
@@ -52,5 +49,6 @@ app.UseAuthentication();// do u have a valid token
 app.UseAuthorization();// now u have allowed to do xyz things
 
 app.MapControllers();
+app.MapFallbackToFile("index.html");
 
 app.Run();
