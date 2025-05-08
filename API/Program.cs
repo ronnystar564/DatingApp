@@ -1,4 +1,4 @@
-using API.Data;
+﻿using API.Data;
 using API.Interface;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,45 +10,70 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddCors();
 
+// ✅ Add CORS policy properly
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
+// Dependency Injection
 builder.Services.AddScoped<ItokenService, TokenService>();
+
+// JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-  .AddJwtBearer(options =>
-  {
-      options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-      {
-          ValidateIssuerSigningKey = true,
-          IssuerSigningKey =
-          new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey"])),
-          ValidateIssuer = false,
-          ValidateAudience = false,
-      };
-  });
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey =
+                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey"])),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+        };
+    });
+
+// Database Context
 builder.Services.AddDbContext<DataContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-app.UseDefaultFiles(); // Serves default files like "index.html"
-app.UseStaticFiles();  // Serves static files from wwwroot folder
+// Configure the middleware pipeline
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
+// ✅ Serve default and static files for SPA
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
-app.UseCors(builder=> builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+// ✅ Use CORS policy
+app.UseCors("CorsPolicy");
 
-app.UseAuthentication();// do u have a valid token
-app.UseAuthorization();// now u have allowed to do xyz things
+// Authentication & Authorization
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
+
+// ✅ Fallback to index.html for Angular routes
 app.MapFallbackToFile("index.html");
 
 app.Run();
