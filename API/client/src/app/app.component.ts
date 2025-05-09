@@ -11,6 +11,7 @@ import { MemberDetailsComponent } from './members/member-details/member-details.
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { ToastrModule } from 'ngx-toastr';
+import { MemberListsComponent } from './members/member-lists/member-lists.component';
  
 
 @Component({
@@ -18,7 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [RouterOutlet, CommonModule, NavComponent, HomeComponent,ToastrModule]
+  imports: [RouterOutlet, CommonModule, NavComponent, HomeComponent,ToastrModule,MemberListsComponent]
 
 
 })

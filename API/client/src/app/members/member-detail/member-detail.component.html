@@ -1,1 +1,16 @@
-<p>member-detail works!</p>
+<div class="row">
+  @for (member of members; track member.id) {
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+    <div class="card h-100 shadow-sm">
+      <img [src]="member.photoUrl || 'assets/user.png'" class="card-img-top" alt="{{ member.knownAs }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ member.knownAs }}</h5>
+        <p class="card-text">
+          Age: {{ member.age }}<br>
+          Location: {{ member.city }}, {{ member.country }}
+        </p>
+      </div>
+    </div>
+  </div>
+  }
+</div>

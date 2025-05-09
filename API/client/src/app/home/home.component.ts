@@ -5,11 +5,12 @@ import { RegisterComponent } from '../register/register.component';
 import { HttpClient } from '@angular/common/http';
 import { AccountService } from '../Services/account.service';
 import { ToastrService } from 'ngx-toastr';
+import { MemberListComponent } from '../members/member-list/member-list.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,RegisterComponent,FormsModule],
+  imports: [CommonModule,RegisterComponent,FormsModule,MemberListComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
