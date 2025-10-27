@@ -1,15 +1,34 @@
 <div class="row">
   <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3" *ngFor="let member of members; trackBy: trackByMemberId">
     <div class="card h-100 shadow-sm">
+      <!-- Member Profile Image -->
       <img [src]="member.photoUrl || 'assets/user.png'" class="card-img-top" alt="{{ member.knownAs }}">
+
       <div class="card-body">
+        <!-- Display Member KnownAs -->
         <h5 class="card-title">{{ member.knownAs }}</h5>
+
+        <!-- Display other member details -->
         <p class="card-text">
-          Age: {{ member.age }}<br>
-          Location: {{ member.city }}, {{ member.country }}
+          <strong>Username:</strong> {{ member.username }}<br>
+          <strong>Age:</strong> {{ member.age }}<br>
+          <strong>Gender:</strong> {{ member.gender }}<br>
+          <strong>Location:</strong> {{ member.city }}, {{ member.country }}<br>
+          <strong>Interests:</strong> {{ member.interests || 'Not Provided' }}<br>
+          <strong>Introduction:</strong> {{ member.introduction || 'Not Provided' }}<br>
+          <strong>Looking for:</strong> {{ member.lookingFor || 'Not Provided' }}<br>
+          <strong>Joined:</strong> {{ member.created | date:'mediumDate' }}<br>
+          <strong>Last Active:</strong> {{ member.lastActive | date:'medium' }}<br>
         </p>
+
+        <!-- Display Photo Gallery -->
+        <div *ngIf="member.photos && member.photos.length > 0">
+          <h6>Gallery:</h6>
+          <div class="d-flex">
+            <img *ngFor="let photo of member.photos" [src]="photo.url" class="img-thumbnail" style="max-width: 50px; max-height: 50px; margin-right: 5px;" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
